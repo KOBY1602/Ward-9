@@ -25,41 +25,30 @@ public class DoorController : MonoBehaviour
         
     }
 
-    public void DoorToggle(int side)
+    public void DoorToggleLeft()
     {
-        switch (side)
+        isOpenLeft = !isOpenLeft;
+        
+        if (DoorLeft.activeSelf)
         {
-            case 1:
-                DoorLeft = leftHall;
-                if (isOpenLeft)
-                {
-                    Debug.Log("close");
-                    DoorLeft.SetActive(false);
-                }
-                else
-                {
-                    Debug.Log("open");
-                    DoorLeft.SetActive(true);
-                }
-                isOpenLeft = !isOpenLeft;
-                break;
-
-            case 2:
-                DoorRight = rightHall;
-                if (isOpenRight)
-                {
-                    Debug.Log("close");
-                    DoorRight.SetActive(false);
-                }
-                else
-                {
-                    Debug.Log("open");
-                    DoorRight.SetActive(true);
-                }
-                isOpenRight = !isOpenRight;
-                break;
+            DoorLeft.SetActive(false);
         }
+        else
+        {
+            DoorLeft.SetActive(true);
+        }
+    }
+    public void DoorToggleRight()
+    {
+        isOpenRight = !isOpenRight;
 
-
+        if (DoorRight.activeSelf)
+        {
+            DoorRight.SetActive(false);
+        }
+        else
+        {
+            DoorRight.SetActive(true);
+        }
     }
 }
