@@ -1,19 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThreatDetector : MonoBehaviour
 {
-    public int selectedRoom;
+    public SelectedRoom SelectedRoom;
     public List<int> nearbyRooms;
+
+    private int selectedRoom;
+    
+    [SerializeField] private List<RoomMover> RoomMovers;
+    [SerializeField] private List<int> botCurrentRooms;
+
+    [SerializeField] private int dangerLevel;
+
+    [SerializeField] private GameObject green;
+    [SerializeField] private GameObject yellow;
+    [SerializeField] private GameObject red;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+    public void PressButton()
+    {
+        selectedRoom = SelectedRoom.selectedRoom;
+        botCurrentRooms.Clear();
+        foreach (RoomMover item in RoomMovers)
+        {
+            botCurrentRooms.Add(item.currentRoom);
+        }
+
+
+
+        NearbyRooms();
+        DetectThreats();
+
+        DangerLevelCheck();
+    }
+    void NearbyRooms()
     {
         switch (selectedRoom)
         {
@@ -117,6 +152,51 @@ public class ThreatDetector : MonoBehaviour
                 nearbyRooms.Add(13);
                 nearbyRooms.Add(8);
                 break;
+        }
+    }
+    void DetectThreats()
+    {
+        bool isInSelectedRoom;
+        isInSelectedRoom = botCurrentRooms.Contains(selectedRoom);
+
+        
+        if (isInSelectedRoom)
+        {
+            dangerLevel = 3;
+        }
+        else dangerLevel = 1;
+        
+        foreach (int nearbyRoom in nearbyRooms)
+        {
+            
+            if (botCurrentRooms.Contains(nearbyRoom) && !isInSelectedRoom)
+            {
+                dangerLevel = 2;
+            }
+            
+        }
+    }
+    void DangerLevelCheck() 
+    {
+        green.SetActive(false);
+        yellow.SetActive(false);
+        red.SetActive(false);
+        switch (dangerLevel)
+        {
+            case 1:
+                green.SetActive(true);
+
+                break;
+            case 2:
+                yellow.SetActive(true);
+                green.SetActive(true);
+                break;
+            case 3:
+                red.SetActive(true);
+                yellow.SetActive(true);
+                green.SetActive(true);
+                break;
+
         }
     }
 }

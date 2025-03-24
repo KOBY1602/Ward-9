@@ -6,11 +6,24 @@ using UnityEngine.UI;
 public class RoomMover : MonoBehaviour
 {
     public int startRoom;
-    private int currentRoom;
+    public int currentRoom;
     public float timer;
     public float timerReset;
+    
     public int randNumber;
+    
+    private bool canMove;
 
+
+    //Door
+    public float doorTimerReset;
+    public float doorTimer;
+
+    private bool isClosedDoorLeft;
+    private bool isClosedDoorRight;
+
+    [SerializeField] private DoorController[] doorController;
+    
     public enum Difficulty
     {
         Easy,
@@ -26,16 +39,21 @@ public class RoomMover : MonoBehaviour
     void Start()
     {
         currentRoom = startRoom;
+        canMove = true;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+
+
+
+
         timer += Time.deltaTime;
         if (timer >= timerReset)
         {
             timer = 0;
-            if (RandomMoveNumber() < GetDifficult())
+            if (RandomMoveNumber() < GetDifficult() && canMove)
             {
                 ToNextRoom();
                 Debug.Log("Move");
@@ -44,6 +62,10 @@ public class RoomMover : MonoBehaviour
         }
 
         bot1Text.text = currentRoom.ToString();
+
+        //Door
+        doorController[0].isOpenRight = !isClosedDoorRight;
+        doorController[1].isOpenLeft = !isClosedDoorLeft;
     }
 
     int RandomMoveNumber()
@@ -218,7 +240,54 @@ public class RoomMover : MonoBehaviour
             currentRoom = 8;
         }
 
-        else currentRoom = 102;
+        else currentRoom = 101;
+    }
+    //Room101: LeftHall
+    //Room102: RightHall
+    //Room 200: PlayerRoom
+    void NextRoom_101()
+    {
+        canMove = false;
+        doorTimer += Time.deltaTime;
+        int waitTime = Random.Range(5, 15);
+        if (doorTimer >= waitTime )
+        {
+            doorTimer = 0;
+            if (isClosedDoorLeft)
+            {
+                Retreat();
+                canMove = true;
+            }
+            else
+            {
+                canMove = true;
+                currentRoom = 200;
+            }
+        }
+    }
+    void NextRoom_102()
+    {
+        canMove = false;
+        doorTimer += Time.deltaTime;
+        int waitTime = Random.Range(1, 3);
+        if (doorTimer >= waitTime)
+        {
+            doorTimer = 0;
+            if (isClosedDoorRight)
+            {
+                Retreat();
+                canMove = true;
+            }
+            else
+            {
+                canMove = true;
+                currentRoom = 200;
+            }
+        }
+    }
+    void Retreat()
+    {
+        currentRoom = Random.Range(1, 11);
     }
     public void ToNextRoom()
     {
@@ -272,6 +341,13 @@ public class RoomMover : MonoBehaviour
             case 16:
                 NextRoom_16();
                 break;
+            case 101:
+                NextRoom_101();
+                break;
+            case 102:
+                NextRoom_102();
+                break;
+
         }
     }
 }
