@@ -12,15 +12,15 @@ public class RoomMover : MonoBehaviour
     
     public int randNumber;
     
-    private bool canMove;
+    public bool canMove;
 
 
     //Door
     public float doorTimerReset;
     public float doorTimer;
+    public float doorTimerResetMin;
+    public float doorTimerResetMax;
 
-    private bool isClosedDoorLeft;
-    private bool isClosedDoorRight;
 
     [SerializeField] private DoorController[] doorController;
     
@@ -35,6 +35,10 @@ public class RoomMover : MonoBehaviour
     public GameObject bot1;
     public Text bot1Text;
 
+
+    public bool in101;
+    public bool in102;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -50,10 +54,10 @@ public class RoomMover : MonoBehaviour
 
 
         timer += Time.deltaTime;
-        if (timer >= timerReset)
+        if (timer >= timerReset && canMove)
         {
             timer = 0;
-            if (RandomMoveNumber() < GetDifficult() && canMove)
+            if (RandomMoveNumber() < GetDifficult() )
             {
                 ToNextRoom();
                 Debug.Log("Move");
@@ -63,11 +67,78 @@ public class RoomMover : MonoBehaviour
 
         bot1Text.text = currentRoom.ToString();
 
-        //Door
-        doorController[0].isOpenRight = !isClosedDoorRight;
-        doorController[1].isOpenLeft = !isClosedDoorLeft;
-    }
+       if (in101)
+        {
 
+            doorTimer += Time.deltaTime;
+             
+            if (doorTimer >= doorTimerReset)
+            {
+                doorTimer = 0;
+                if (!doorController[1].isOpenLeft)
+                {
+                    Retreat();
+                    in101 = false;
+
+                    //reset to normal state
+                    canMove = true;
+                    timer = 0;
+                }
+                else
+                {
+                    in101 = false;
+
+                    currentRoom = 200;
+                }
+            }
+        }
+        if (in102)
+        {
+
+            doorTimer += Time.deltaTime;
+            
+            if (doorTimer >= doorTimerReset)
+            {
+                doorTimer = 0;
+                if (!doorController[0].isOpenRight)
+                {
+                    Retreat();
+
+                    in102 = false;
+                    //reset to normal state
+                    canMove = true;
+                    timer = 0;
+
+                }
+                else
+                {
+                    in102 = false;
+
+                    currentRoom = 200;
+                }
+            }
+        }
+
+
+    }
+    //Room101: LeftHall
+    //Room102: RightHall
+    //Room 200: PlayerRoom
+    void NextRoom_101()
+    {
+        canMove = false;
+        doorTimerReset = Random.Range(doorTimerResetMin, doorTimerResetMax);
+        in101 = true;
+        
+
+
+    }
+    void NextRoom_102()
+    {
+        canMove = false;
+        doorTimerReset = Random.Range(doorTimerResetMin, doorTimerResetMax);
+        in102 = true;
+    }
     int RandomMoveNumber()
     {
         randNumber = Random.Range(1, 21);
@@ -242,48 +313,9 @@ public class RoomMover : MonoBehaviour
 
         else currentRoom = 101;
     }
-    //Room101: LeftHall
-    //Room102: RightHall
-    //Room 200: PlayerRoom
-    void NextRoom_101()
+    void NextRoom_200()
     {
-        canMove = false;
-        doorTimer += Time.deltaTime;
-        int waitTime = Random.Range(5, 15);
-        if (doorTimer >= waitTime )
-        {
-            doorTimer = 0;
-            if (isClosedDoorLeft)
-            {
-                Retreat();
-                canMove = true;
-            }
-            else
-            {
-                canMove = true;
-                currentRoom = 200;
-            }
-        }
-    }
-    void NextRoom_102()
-    {
-        canMove = false;
-        doorTimer += Time.deltaTime;
-        int waitTime = Random.Range(1, 3);
-        if (doorTimer >= waitTime)
-        {
-            doorTimer = 0;
-            if (isClosedDoorRight)
-            {
-                Retreat();
-                canMove = true;
-            }
-            else
-            {
-                canMove = true;
-                currentRoom = 200;
-            }
-        }
+
     }
     void Retreat()
     {

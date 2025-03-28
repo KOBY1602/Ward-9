@@ -3086,14 +3086,19 @@ MonoBehaviour:
   timer: 0
   timerReset: 2
   randNumber: 0
+  canMove: 0
   doorTimerReset: 0
   doorTimer: 0
+  doorTimerResetMin: 0
+  doorTimerResetMax: 0
   doorController:
   - {fileID: 1317455974}
   - {fileID: 647633374}
   difficultyChoice: 2
   bot1: {fileID: 1339133876}
   bot1Text: {fileID: 1731577562}
+  in101: 0
+  in102: 0
 --- !u!4 &780336261
 Transform:
   m_ObjectHideFlags: 0
@@ -4912,14 +4917,19 @@ MonoBehaviour:
   timer: 0
   timerReset: 2
   randNumber: 0
+  canMove: 0
   doorTimerReset: 0
   doorTimer: 0
+  doorTimerResetMin: 0
+  doorTimerResetMax: 0
   doorController:
   - {fileID: 1317455974}
   - {fileID: 647633374}
   difficultyChoice: 2
   bot1: {fileID: 2109888079}
   bot1Text: {fileID: 29090033}
+  in101: 0
+  in102: 0
 --- !u!4 &1458894239
 Transform:
   m_ObjectHideFlags: 0
