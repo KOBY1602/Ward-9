@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Power : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class Power : MonoBehaviour
     [SerializeField] private float powerConsumption3;
     [SerializeField] private float powerConsumption4;
     [SerializeField] private float powerConsumption5;
+
+    [Space(20)]
+    [SerializeField] private Slider powerBar;
     void Start()
     {
         powerUsage = 1;
@@ -28,6 +32,7 @@ public class Power : MonoBehaviour
         batteryNumber -= powerConsumption;
         batteryNum.text = Mathf.Floor(batteryNumber).ToString();
         PowerConsumptionCalc();
+
     }
     private void PowerConsumptionCalc()
     {

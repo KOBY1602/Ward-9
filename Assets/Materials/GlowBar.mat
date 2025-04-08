@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GlowWhite
+  m_Name: GlowBar
   m_Shader: {fileID: -6465566751694194690, guid: 08689b91d9d680e458d36fd94de83543, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -69,7 +69,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _GlowAmount: 3.84
     m_Colors:
-    - _Color: {r: 1.0348053, g: 1.0348053, b: 1.0348053, a: 1}
+    - _Color: {r: 2.0696104, g: 2.0696104, b: 2.0696104, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
