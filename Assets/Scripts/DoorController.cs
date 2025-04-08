@@ -13,8 +13,8 @@ public class DoorController : MonoBehaviour
     public GameObject rightHall;
     [SerializeField]private GameObject DoorLeft;
     [SerializeField] private GameObject DoorRight;
+    private int random;
 
-  
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,8 @@ public class DoorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+     
+
     }
 
     public void DoorToggleLeft()
@@ -33,12 +34,12 @@ public class DoorController : MonoBehaviour
         
         if (DoorLeft.activeSelf)
         {
-            
+            Power.instance.MinusUsage();
             DoorLeft.SetActive(false);
         }
         else
         {
-         
+            Power.instance.AddUsage();
             DoorLeft.SetActive(true);
         }
 
@@ -50,14 +51,14 @@ public class DoorController : MonoBehaviour
 
         if (DoorRight.activeSelf)
         {
-            
 
+            Power.instance.MinusUsage();
             DoorRight.SetActive(false);
         }
         else
         {
-           
 
+            Power.instance.AddUsage();
             DoorRight.SetActive(true);
         }
     }

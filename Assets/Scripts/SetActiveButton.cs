@@ -20,5 +20,10 @@ public class SetActiveButton : MonoBehaviour
     public void SetObjectActive()
     {
         m_active = !m_active;
+        if (m_active)
+        {
+            Power.instance.AddUsage();
+        }
+        else Power.instance.MinusUsage();
     }
 }

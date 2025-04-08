@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class Power : MonoBehaviour
 {
+    
+
+    public static Power instance;
     // Start is called before the first frame update
     [SerializeField] private float batteryNumber;
-    [SerializeField] private int powerUsage;
+    [SerializeField] public int powerUsage;
     [SerializeField] private float powerConsumption;
     [SerializeField] private TextMeshProUGUI batteryNum;
     [Space(20)] 
@@ -23,6 +26,18 @@ public class Power : MonoBehaviour
     private int powerBarNum;
  
     [SerializeField] private Image fillColor;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy duplicates if any
+        }
+    }
     void Start()
     {
         powerUsage = 1;
@@ -33,7 +48,7 @@ public class Power : MonoBehaviour
     void FixedUpdate()
     {
         batteryNumber -= powerConsumption;
-        batteryNum.text = Mathf.Floor(batteryNumber).ToString();
+        batteryNum.text = Mathf.Floor(batteryNumber).ToString() + "%";
         PowerConsumptionCalc();
 
         powerBar.value = powerBarNum;
@@ -44,14 +59,14 @@ public class Power : MonoBehaviour
         switch (powerUsage)
         {
             case 1:
-                fillColor.color = new Color32(0, 255, 0, 255);
+                fillColor.color = new Color32(0, 180, 0, 180);
                 powerBarNum = 20;
                 powerConsumption = powerConsumption1;
                 break;
             case 2:
                 powerConsumption = powerConsumption2;
                 powerBarNum = Random.Range(40 -1, 40);
-                fillColor.color = new Color32(0, 255, 0, 255);
+                fillColor.color = new Color32(0, 180, 0, 180);
                 break;
             case 3:
                 fillColor.color = new Color32(255, 100,0, 255);
@@ -72,5 +87,14 @@ public class Power : MonoBehaviour
                 powerConsumption = powerConsumption5;
                 break;
         }
+    }
+
+    public void AddUsage()
+    {
+        powerUsage++;
+    }
+    public void MinusUsage()
+    {
+        powerUsage--;
     }
 }

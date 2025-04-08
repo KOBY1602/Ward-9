@@ -246,10 +246,10 @@ public class RoomMover : MonoBehaviour
 
         else currentRoom = 16;
     }
-    //ELEVATOR
+    //vent
     void NextRoom_9()
     {
-        
+         
     }
     void NextRoom_10()
     {
@@ -320,6 +320,11 @@ public class RoomMover : MonoBehaviour
     void Retreat()
     {
         currentRoom = Random.Range(1, 11);
+        if (currentRoom == 9)
+        {
+            currentRoom = Random.Range(1, 11);
+        }
+        else { }
     }
     public void ToNextRoom()
     {
