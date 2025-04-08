@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DoorController : MonoBehaviour
 {
@@ -12,11 +13,12 @@ public class DoorController : MonoBehaviour
     public GameObject rightHall;
     [SerializeField]private GameObject DoorLeft;
     [SerializeField] private GameObject DoorRight;
-    
+
+  
     // Start is called before the first frame update
     void Start()
     {
-        
+       // image.color = openColor;
     }
 
     // Update is called once per frame
@@ -31,12 +33,16 @@ public class DoorController : MonoBehaviour
         
         if (DoorLeft.activeSelf)
         {
+            
             DoorLeft.SetActive(false);
         }
         else
         {
+         
             DoorLeft.SetActive(true);
         }
+
+        
     }
     public void DoorToggleRight()
     {
@@ -44,10 +50,14 @@ public class DoorController : MonoBehaviour
 
         if (DoorRight.activeSelf)
         {
+            
+
             DoorRight.SetActive(false);
         }
         else
         {
+           
+
             DoorRight.SetActive(true);
         }
     }

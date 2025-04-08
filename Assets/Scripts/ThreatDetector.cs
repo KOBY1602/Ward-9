@@ -20,7 +20,7 @@ public class ThreatDetector : MonoBehaviour
     [SerializeField] private GameObject green;
     [SerializeField] private GameObject yellow;
     [SerializeField] private GameObject red;
-
+    [SerializeField] private GameObject gray;
     // Start is called before the first frame update
     void Start()
     {
@@ -106,11 +106,7 @@ public class ThreatDetector : MonoBehaviour
                 nearbyRooms.Add(16);
                 break;
             case 9:
-                nearbyRooms = new List<int>();
-                nearbyRooms.Add(4);
-                nearbyRooms.Add(7);
-                nearbyRooms.Add(8);
-                nearbyRooms.Add(6);
+                Room9();
                 break;
             case 10:
                 nearbyRooms = new List<int>();
@@ -175,12 +171,21 @@ public class ThreatDetector : MonoBehaviour
             }
             
         }
+        if (selectedRoom == 9)
+        {
+            Room9();
+        }
+    }
+    void Room9()
+    {
+        dangerLevel = 4;
     }
     void DangerLevelCheck() 
     {
         green.SetActive(false);
         yellow.SetActive(false);
         red.SetActive(false);
+        gray.SetActive(false);
         switch (dangerLevel)
         {
             case 1:
@@ -195,6 +200,9 @@ public class ThreatDetector : MonoBehaviour
                 red.SetActive(true);
                 yellow.SetActive(true);
                 green.SetActive(true);
+                break;
+            case 4:
+                gray.SetActive(true);
                 break;
 
         }

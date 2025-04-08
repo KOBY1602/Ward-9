@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraButton : MonoBehaviour
 {
     public GameObject[] Rooms;
-    [SerializeField] private SelectedRoom selectedRoom;
+    [SerializeField] public SelectedRoom selectedRoom;
 
     private GameObject dangerIndicator;
     private ThreatDetector threatDetector;
