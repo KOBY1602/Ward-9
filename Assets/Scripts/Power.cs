@@ -74,7 +74,7 @@ public class Power : MonoBehaviour
                 powerConsumption = powerConsumption3;
                 break;
             case 4:
-                fillColor.color = new Color32(255, 100, 0, 255);
+                fillColor.color = new Color32(255, 40, 0, 255);
                 powerBarNum = Random.Range(80 - 2, 80 +1);
                 powerConsumption = powerConsumption4;
                 break;

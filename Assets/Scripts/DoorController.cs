@@ -34,12 +34,12 @@ public class DoorController : MonoBehaviour
         
         if (DoorLeft.activeSelf)
         {
-            Power.instance.MinusUsage();
+           
             DoorLeft.SetActive(false);
         }
         else
         {
-            Power.instance.AddUsage();
+           
             DoorLeft.SetActive(true);
         }
 
@@ -52,13 +52,13 @@ public class DoorController : MonoBehaviour
         if (DoorRight.activeSelf)
         {
 
-            Power.instance.MinusUsage();
+            
             DoorRight.SetActive(false);
         }
         else
         {
 
-            Power.instance.AddUsage();
+            
             DoorRight.SetActive(true);
         }
     }
