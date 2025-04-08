@@ -20,6 +20,9 @@ public class Power : MonoBehaviour
 
     [Space(20)]
     [SerializeField] private Slider powerBar;
+    private int powerBarNum;
+ 
+    [SerializeField] private Image fillColor;
     void Start()
     {
         powerUsage = 1;
@@ -33,24 +36,39 @@ public class Power : MonoBehaviour
         batteryNum.text = Mathf.Floor(batteryNumber).ToString();
         PowerConsumptionCalc();
 
+        powerBar.value = powerBarNum;
+
     }
     private void PowerConsumptionCalc()
     {
         switch (powerUsage)
         {
             case 1:
+                fillColor.color = new Color32(0, 255, 0, 255);
+                powerBarNum = 20;
                 powerConsumption = powerConsumption1;
                 break;
             case 2:
                 powerConsumption = powerConsumption2;
+                powerBarNum = Random.Range(40 -1, 40);
+                fillColor.color = new Color32(0, 255, 0, 255);
                 break;
             case 3:
+                fillColor.color = new Color32(255, 100,0, 255);
+                powerBarNum = Random.Range(60 - 1, 60 + 1);
                 powerConsumption = powerConsumption3;
                 break;
             case 4:
+                fillColor.color = new Color32(255, 100, 0, 255);
+                powerBarNum = Random.Range(80 - 2, 80 +1);
                 powerConsumption = powerConsumption4;
                 break;
             case 5:
+
+
+                fillColor.color = new Color32(255, 0, 0, 255);
+                powerBarNum = Random.Range(100 - 5, 100);
+
                 powerConsumption = powerConsumption5;
                 break;
         }
