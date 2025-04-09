@@ -26,4 +26,9 @@ public class SetActiveButton : MonoBehaviour
         }
         else Power.instance.MinusUsage();
     }
+    public void SetObjectActiveWithoutAddingPower()
+    {
+        m_active = !m_active;
+       
+    }
 }
