@@ -31,6 +31,7 @@ public class CameraButton : MonoBehaviour
     }
     public void SelectRoom(int roomNumber)
     {
+        Debug.Log(roomNumber);
         foreach (GameObject room in Rooms)
         {
             if (room != null)

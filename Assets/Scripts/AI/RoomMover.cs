@@ -18,6 +18,7 @@ public class RoomMover : MonoBehaviour
     //Door
     public float doorTimerReset;
     public float doorTimer;
+
     public float doorTimerResetMin;
     public float doorTimerResetMax;
 
