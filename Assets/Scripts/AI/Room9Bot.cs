@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static RoomMover;
 
 public class Room9Bot : MonoBehaviour
 {
@@ -8,41 +10,76 @@ public class Room9Bot : MonoBehaviour
     [SerializeField] private int stage;
     [SerializeField] private float countDown;
     [SerializeField] private float countDownRate;
+
+    public float timer;
+    [SerializeField] private float timerReset;
+    
+    private bool canMove;
+    private int randNumber;
+
+    [Space(20)]
+    public Difficulty difficultyChoice;
+
+   
+    public enum Difficulty
+    {
+        FirstLevel,
+        Easy,
+        Normal,
+        Hard
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
         stage = 1;
         countDown = 100;
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        countDown -= Time.deltaTime;
-        StageSwitch(countDown);
+
+        timer += Time.deltaTime;
+        if (timer >= timerReset && canMove)
+        {
+            timer = 0;
+            if (RandomMoveNumber() < GetDifficult())
+            {
+                ToNextStage();
+                Debug.Log("Room 9 NextStage");
+            }
+           
+        }
+        if (SelectedRoom.instance.selectedRoom == 9)
+        {
+            timer = 0;
+        }
+        else { }
     }
-    void StageSwitch(float countDown)
+    void ToNextStage()
     {
-        // Check which range the countdown is in and update the stage accordingly
-        if (countDown <= 20)
+        stage++;
+    }
+    int GetDifficult()
+    {
+        switch (difficultyChoice)
         {
-            stage = 5; // countdown is 0 or less, set stage to 5
-        }
-        else if (countDown <= 40)
-        {
-            stage = 4;
-        }
-        else if (countDown <= 60)
-        {
-            stage = 3;
-        }
-        else if (countDown <= 80)
-        {
-            stage = 2;
-        }
-        else if (countDown <= 100)
-        {
-            stage = 1;
+            case Difficulty.FirstLevel:
+                return 1;
+            case Difficulty.Easy:
+                return 3;
+            case Difficulty.Normal:
+                return 7;
+            default:
+                return 15;
         }
     }
+    int RandomMoveNumber()
+    {
+        randNumber = Random.Range(1, 21);
+        return randNumber;
+    }
+  
 }

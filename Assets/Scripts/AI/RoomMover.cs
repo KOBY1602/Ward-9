@@ -27,6 +27,7 @@ public class RoomMover : MonoBehaviour
     
     public enum Difficulty
     {
+        FirstLevel,
         Easy,
         Normal,
         Hard
@@ -90,6 +91,7 @@ public class RoomMover : MonoBehaviour
                     in101 = false;
 
                     currentRoom = 200;
+                    StartCoroutine(GameOver.instance.Death());
                 }
             }
         }
@@ -116,6 +118,7 @@ public class RoomMover : MonoBehaviour
                     in102 = false;
 
                     currentRoom = 200;
+                    StartCoroutine(GameOver.instance.Death());
                 }
             }
         }
@@ -150,6 +153,8 @@ public class RoomMover : MonoBehaviour
     {
         switch (difficultyChoice)
         {
+            case Difficulty.FirstLevel:
+                return 1;
             case Difficulty.Easy:
                 return 3;
             case Difficulty.Normal:
@@ -316,7 +321,7 @@ public class RoomMover : MonoBehaviour
     }
     void NextRoom_200()
     {
-
+        StartCoroutine(GameOver.instance.Death());
     }
     void Retreat()
     {
@@ -384,6 +389,9 @@ public class RoomMover : MonoBehaviour
                 break;
             case 102:
                 NextRoom_102();
+                break;
+            case 200:
+                NextRoom_200();
                 break;
 
         }
