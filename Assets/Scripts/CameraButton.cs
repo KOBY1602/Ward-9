@@ -31,6 +31,10 @@ public class CameraButton : MonoBehaviour
     }
     public void SelectRoom(int roomNumber)
     {
+        AudioManager.instance.RandomCameraSound();
+
+
+
         Debug.Log(roomNumber);
         foreach (GameObject room in Rooms)
         {
