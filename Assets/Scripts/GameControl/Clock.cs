@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Clock : MonoBehaviour
 {
+    public static Clock instance;
     // Start is called before the first frame update
-    [SerializeField] private float seconds = 300;
+    [SerializeField] public float seconds = 300;
     private string time;
     public TextMeshProUGUI text;
     void Start()

@@ -164,6 +164,34 @@ public class RoomMover : MonoBehaviour
         }
     }
 
+    void IncreaseDifficulty()
+    {
+        if (Clock.instance.seconds == 150)
+        {
+            if (GetDifficult() <= 10)
+            {
+                difficultyChoice += 4;
+            }
+            else
+            {
+                difficultyChoice += 2;
+
+            }
+        }
+        if (Clock.instance.seconds == 50)
+        {
+            if (GetDifficult() <= 10)
+            {
+                difficultyChoice += 3;
+            }
+            else
+            {
+                difficultyChoice += 2;
+
+            }
+        }
+
+    }
 
 
 
