@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource door;
     [SerializeField] AudioSource threatDetectorSwitch;
     [SerializeField] AudioSource threatDetectorState;
+    [SerializeField] AudioSource threatDetectorState1;
+
     [SerializeField] AudioSource vent;
     [Space(20)]
 
@@ -37,14 +39,16 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         bgm.clip = ambient;
-        bgm.Play(); 
+        bgm.Play();
+        
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        threatDetectorState.PlayOneShot(Threat1);
-        threatDetectorState.PlayOneShot(Threat2);
+       
     }
     
 
@@ -71,12 +75,17 @@ public class AudioManager : MonoBehaviour
     {
         if (level == 1 && isPlaying)
         {
-            threatDetectorState.PlayOneShot(Threat1);
+            Debug.Log("Level1");
+            threatDetectorState.clip = Threat1;
+            threatDetectorState.Play();
         }        
 
         if (level == 2 && isPlaying)
         {
-            threatDetectorState.PlayOneShot(Threat2);
+            Debug.Log("Level2");
+
+            threatDetectorState.clip = Threat2;
+            threatDetectorState.Play();
         }
         else if (!isPlaying)
         {

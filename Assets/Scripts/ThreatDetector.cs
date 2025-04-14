@@ -21,10 +21,13 @@ public class ThreatDetector : MonoBehaviour
     [SerializeField] private GameObject yellow;
     [SerializeField] private GameObject red;
     [SerializeField] private GameObject gray;
+
+    [SerializeField] private GameObject parent;
+    private bool playAudio;
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioManager.instance.ThreatSound(2, false);
     }
 
     // Update is called once per frame
@@ -190,18 +193,22 @@ public class ThreatDetector : MonoBehaviour
         {
             case 1:
                 green.SetActive(true);
-
+                
                 break;
             case 2:
                 yellow.SetActive(true);
                 green.SetActive(true);
+                
                 break;
             case 3:
                 red.SetActive(true);
                 yellow.SetActive(true);
                 green.SetActive(true);
+                
+
                 break;
             case 4:
+
                 gray.SetActive(true);
                 break;
 
