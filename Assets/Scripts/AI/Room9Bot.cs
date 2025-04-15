@@ -81,5 +81,8 @@ public class Room9Bot : MonoBehaviour
         randNumber = Random.Range(1, 21);
         return randNumber;
     }
-  
+    void Stage5()
+    {
+
+    }
 }
