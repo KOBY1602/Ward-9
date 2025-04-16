@@ -159,8 +159,10 @@ public class RoomMover : MonoBehaviour
                 return 3;
             case Difficulty.Normal:
                 return 7;
-            default:
+            case Difficulty.Hard:
                 return 15;
+            default:
+                return 3;
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using static RoomMover;
 
@@ -20,7 +21,7 @@ public class Room9Bot : MonoBehaviour
     [Space(20)]
     public Difficulty difficultyChoice;
 
-   
+    [SerializeField] private GameObject ventObject;
     public enum Difficulty
     {
         FirstLevel,
@@ -45,10 +46,18 @@ public class Room9Bot : MonoBehaviour
         if (timer >= timerReset && canMove)
         {
             timer = 0;
-            if (RandomMoveNumber() < GetDifficult())
+            if (RandomMoveNumber() < GetDifficult() )
             {
-                ToNextStage();
-                Debug.Log("Room 9 NextStage");
+                if (stage != 4)
+                {
+                    ToNextStage();
+                    Debug.Log("Room 9 NextStage");
+                }
+                else
+                {
+                    Stage4();
+                }
+                
             }
            
         }
@@ -81,8 +90,26 @@ public class Room9Bot : MonoBehaviour
         randNumber = Random.Range(1, 21);
         return randNumber;
     }
+<<<<<<< Updated upstream
     void Stage5()
     {
 
+=======
+    void Stage4()
+    {
+        if (!ventObject.activeSelf)
+        {
+            StartCoroutine(GameOver.instance.Death());
+        }
+        else
+        {
+            Retreat();
+        }
+    }
+    void Retreat()
+    {
+        int randomStage = Random.Range(1, 4);
+        stage = randomStage;
+>>>>>>> Stashed changes
     }
 }
