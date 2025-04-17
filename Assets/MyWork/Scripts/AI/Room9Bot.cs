@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
+
 using UnityEngine;
 using static RoomMover;
 
@@ -9,8 +9,8 @@ public class Room9Bot : MonoBehaviour
 {
 
     [SerializeField] private int stage;
-    [SerializeField] private float countDown;
-    [SerializeField] private float countDownRate;
+    
+   
 
     public float timer;
     [SerializeField] private float timerReset;
@@ -34,7 +34,7 @@ public class Room9Bot : MonoBehaviour
     void Start()
     {
         stage = 1;
-        countDown = 100;
+        
         canMove = true;
     }
 
@@ -66,6 +66,8 @@ public class Room9Bot : MonoBehaviour
             timer = 0;
         }
         else { }
+
+        IncreaseDifficulty();
     }
     void ToNextStage()
     {
@@ -90,11 +92,7 @@ public class Room9Bot : MonoBehaviour
         randNumber = Random.Range(1, 21);
         return randNumber;
     }
-<<<<<<< Updated upstream
-    void Stage5()
-    {
 
-=======
     void Stage4()
     {
         if (!ventObject.activeSelf)
@@ -110,6 +108,33 @@ public class Room9Bot : MonoBehaviour
     {
         int randomStage = Random.Range(1, 4);
         stage = randomStage;
->>>>>>> Stashed changes
+    }
+    void IncreaseDifficulty()
+    {
+        if (Clock.instance.seconds == 150)
+        {
+            if (GetDifficult() <= 10)
+            {
+                difficultyChoice += 4;
+            }
+            else
+            {
+                difficultyChoice += 2;
+
+            }
+        }
+        if (Clock.instance.seconds == 50)
+        {
+            if (GetDifficult() <= 10)
+            {
+                difficultyChoice += 3;
+            }
+            else
+            {
+                difficultyChoice += 2;
+
+            }
+        }
+
     }
 }

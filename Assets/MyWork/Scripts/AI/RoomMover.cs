@@ -22,8 +22,10 @@ public class RoomMover : MonoBehaviour
     public float doorTimerResetMin;
     public float doorTimerResetMax;
 
-
-    [SerializeField] private DoorController[] doorController;
+    //for switching off the difficulty change
+    bool ID1;
+    bool ID2;
+   [SerializeField] private DoorController[] doorController;
     
     public enum Difficulty
     {
@@ -33,7 +35,7 @@ public class RoomMover : MonoBehaviour
         Hard
     }
     public Difficulty difficultyChoice;
-
+    public int difficulty;
     public GameObject bot1;
     public Text bot1Text;
 
@@ -46,20 +48,18 @@ public class RoomMover : MonoBehaviour
     {
         currentRoom = startRoom;
         canMove = true;
+        difficulty = GetDifficult();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-
-
-
         timer += Time.deltaTime;
         if (timer >= timerReset && canMove)
         {
             timer = 0;
-            if (RandomMoveNumber() < GetDifficult() )
+            if (RandomMoveNumber() < difficulty)
             {
                 ToNextRoom();
                 Debug.Log("Move");
@@ -123,7 +123,7 @@ public class RoomMover : MonoBehaviour
             }
         }
 
-
+        IncreaseDifficulty();
     }
     //Room101: LeftHall
     //Room102: RightHall
@@ -168,29 +168,33 @@ public class RoomMover : MonoBehaviour
 
     void IncreaseDifficulty()
     {
-        if (Clock.instance.seconds == 150)
+        if (!(Clock.instance.seconds > 200) && ID1 == false)
         {
-            if (GetDifficult() <= 10)
+            if (difficulty <= 10)
             {
-                difficultyChoice += 4;
+                difficulty += 4;
+                
             }
             else
             {
-                difficultyChoice += 2;
+                difficulty += 2;
 
             }
+            Debug.Log("sex");
+            ID1 = true;
         }
-        if (Clock.instance.seconds == 50)
+        if (!(Clock.instance.seconds > 100) && ID2 == false)
         {
-            if (GetDifficult() <= 10)
+            if (difficulty <= 10)
             {
-                difficultyChoice += 3;
+                difficulty += 3;
             }
             else
             {
-                difficultyChoice += 2;
+                difficulty += 2;
 
             }
+            ID2 = true;
         }
 
     }
@@ -426,4 +430,6 @@ public class RoomMover : MonoBehaviour
 
         }
     }
+
+   
 }

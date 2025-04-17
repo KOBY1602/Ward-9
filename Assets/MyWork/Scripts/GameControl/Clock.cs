@@ -10,6 +10,11 @@ public class Clock : MonoBehaviour
     [SerializeField] public float seconds = 300;
     private string time;
     public TextMeshProUGUI text;
+    public int gameSpeedMultiplierl;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         
