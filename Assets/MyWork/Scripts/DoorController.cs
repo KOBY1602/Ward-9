@@ -34,12 +34,12 @@ public class DoorController : MonoBehaviour
         
         if (DoorLeft.activeSelf)
         {
-           
+            AudioManager.instance.DoorLeft(1);
             DoorLeft.SetActive(false);
         }
         else
         {
-           
+            AudioManager.instance.DoorLeft(0);
             DoorLeft.SetActive(true);
         }
 
@@ -52,13 +52,13 @@ public class DoorController : MonoBehaviour
         if (DoorRight.activeSelf)
         {
 
-            
+            AudioManager.instance.DoorRight(1);
             DoorRight.SetActive(false);
         }
         else
         {
+            AudioManager.instance.DoorRight(0);
 
-            
             DoorRight.SetActive(true);
         }
     }

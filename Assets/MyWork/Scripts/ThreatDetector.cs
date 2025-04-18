@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ThreatDetector : MonoBehaviour
 {
+    public static ThreatDetector instance;  
     public SelectedRoom SelectedRoom;
     public List<int> nearbyRooms;
 
@@ -24,6 +25,10 @@ public class ThreatDetector : MonoBehaviour
 
     [SerializeField] private GameObject parent;
     private bool playAudio;
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -193,22 +198,22 @@ public class ThreatDetector : MonoBehaviour
         {
             case 1:
                 green.SetActive(true);
-                
+                AudioManager.instance.ThreatSound(1, false);
                 break;
             case 2:
                 yellow.SetActive(true);
                 green.SetActive(true);
-                
+                AudioManager.instance.ThreatSound(1, true);
                 break;
             case 3:
                 red.SetActive(true);
                 yellow.SetActive(true);
                 green.SetActive(true);
-                
+                AudioManager.instance.ThreatSound(2, true);
 
                 break;
             case 4:
-
+                AudioManager.instance.ThreatSound(1, false);
                 gray.SetActive(true);
                 break;
 

@@ -10,7 +10,10 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioSource bgm;
     [SerializeField] AudioSource buttonClick;
-    [SerializeField] AudioSource door;
+
+    [SerializeField] AudioSource doorLeft;
+    [SerializeField] AudioSource doorRight;
+
     [SerializeField] AudioSource threatDetectorSwitch;
     [SerializeField] AudioSource threatDetectorState;
     [SerializeField] AudioSource threatDetectorState1;
@@ -28,6 +31,9 @@ public class AudioManager : MonoBehaviour
     [Header("--ThreatState--")]
     public AudioClip Threat1;
     public AudioClip Threat2;
+    [Header("--Door--")]
+    public AudioClip doorClose;
+    public AudioClip doorOpen;
 
     private void Awake()
     {
@@ -40,18 +46,7 @@ public class AudioManager : MonoBehaviour
     {
         bgm.clip = ambient;
         bgm.Play();
-        
-        
-
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-    
-
     public void RandomCameraSound()
     {
         int randNum = Random.Range(1, 4);
@@ -73,23 +68,62 @@ public class AudioManager : MonoBehaviour
     }
     public void ThreatSound(int level, bool isPlaying)
     {
-        if (level == 1 && isPlaying)
+        if (ThreatParentControl.instance.gameObject.activeSelf )
         {
-            Debug.Log("Level1");
-            threatDetectorState.clip = Threat1;
-            threatDetectorState.Play();
-        }        
+            if (level == 1 && isPlaying  )
+            {
+                threatDetectorState.Stop();
+                Debug.Log("Level1");
+                threatDetectorState.clip = Threat1;
+                threatDetectorState.Play();
+            }
 
-        if (level == 2 && isPlaying)
-        {
-            Debug.Log("Level2");
+            if (level == 2 && isPlaying )
+            
+            {
+                threatDetectorState.Stop();
+                Debug.Log("Level2");
 
-            threatDetectorState.clip = Threat2;
-            threatDetectorState.Play();
+                threatDetectorState.clip = Threat2;
+                threatDetectorState.Play();
+            }
+            else if (!isPlaying)
+            {
+                threatDetectorState.Stop();
+            }
         }
-        else if (!isPlaying)
+        else
         {
             threatDetectorState.Stop();
         }
     }
+
+    //2 door functions so sound overlaps instead of stopping each other
+    public void DoorLeft(int action)
+        //action == 0 (close), 1 (open)
+    {
+        switch (action)
+        {
+            case 0:
+                doorLeft.PlayOneShot(doorClose); 
+                break;
+            case 1:
+                doorLeft.PlayOneShot(doorOpen);
+                break;
+        }
+    }
+    public void DoorRight(int action)
+    //action == 0 (close), 1 (open)
+    {
+        switch (action)
+        {
+            case 0:
+                doorRight.PlayOneShot(doorClose);
+                break;
+            case 1:
+                doorRight.PlayOneShot(doorOpen);
+                break;
+        }
+    }
+
 }
