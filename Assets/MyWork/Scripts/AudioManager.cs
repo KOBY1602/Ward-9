@@ -31,9 +31,14 @@ public class AudioManager : MonoBehaviour
     [Header("--ThreatState--")]
     public AudioClip Threat1;
     public AudioClip Threat2;
+    [Space(10)]
+    public AudioClip Threat11;
+    public AudioClip Threat12;
+    public AudioClip Threat13;
     [Header("--Door--")]
     public AudioClip doorClose;
     public AudioClip doorOpen;
+
 
     private void Awake()
     {
@@ -70,6 +75,7 @@ public class AudioManager : MonoBehaviour
     {
         if (ThreatParentControl.instance.gameObject.activeSelf )
         {
+            //for normal Rooms
             if (level == 1 && isPlaying  )
             {
                 threatDetectorState.Stop();
@@ -87,15 +93,38 @@ public class AudioManager : MonoBehaviour
                 threatDetectorState.clip = Threat2;
                 threatDetectorState.Play();
             }
+            if(level == 11 && isPlaying)
+            {
+                threatDetectorState.Stop();
+                Debug.Log("Level11");
+
+                threatDetectorState.clip = Threat11;
+                threatDetectorState.Play();
+            }
+            if (level == 12 && isPlaying)
+            {
+                threatDetectorState.Stop();
+                Debug.Log("Level12");
+
+                threatDetectorState.clip = Threat12;
+                threatDetectorState.Play();
+            }
+            if (level == 13 && isPlaying)
+            {
+
+            }
             else if (!isPlaying)
             {
                 threatDetectorState.Stop();
             }
+
         }
         else
         {
             threatDetectorState.Stop();
         }
+
+
     }
 
     //2 door functions so sound overlaps instead of stopping each other

@@ -69,6 +69,21 @@ public class Room9Bot : MonoBehaviour
 
         IncreaseDifficulty();
     }
+    void Stages()
+    {
+        switch (stage)
+        {
+            case 1:
+                AudioManager.instance.ThreatSound(11, true);
+                break;
+            case 2:
+                AudioManager.instance.ThreatSound(12, true);
+                break;
+            case 3:
+
+                break;
+        }
+    }
     void ToNextStage()
     {
         stage++;

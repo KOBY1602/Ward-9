@@ -4248,6 +4248,9 @@ MonoBehaviour:
   buttonClick3: {fileID: 8300000, guid: 5d7a442c05b807441a9ba75b8428fe41, type: 3}
   Threat1: {fileID: 8300000, guid: bbae490be54828a47b8dd121888bee2b, type: 3}
   Threat2: {fileID: 8300000, guid: da0990031479e9746bef6d55dfc99577, type: 3}
+  Threat11: {fileID: 0}
+  Threat12: {fileID: 0}
+  Threat13: {fileID: 0}
   doorClose: {fileID: 8300000, guid: feab5742074d5904093911f947fe20c1, type: 3}
   doorOpen: {fileID: 8300000, guid: 9ed97cde12721da459d0e30a51c4503f, type: 3}
 --- !u!4 &467315662
@@ -10311,8 +10314,8 @@ MonoBehaviour:
   stage: 0
   timer: 0
   timerReset: 5
-  difficultyChoice: 0
-  ventObject: {fileID: 0}
+  difficultyChoice: 3
+  ventObject: {fileID: 1193167920}
 --- !u!4 &1236826563
 Transform:
   m_ObjectHideFlags: 0
