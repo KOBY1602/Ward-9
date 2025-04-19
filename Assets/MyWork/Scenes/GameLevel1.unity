@@ -2173,6 +2173,8 @@ GameObject:
   m_Component:
   - component: {fileID: 195105207}
   - component: {fileID: 195105206}
+  - component: {fileID: 195105209}
+  - component: {fileID: 195105208}
   m_Layer: 0
   m_Name: ThreatState
   m_TagString: Untagged
@@ -2291,6 +2293,38 @@ Transform:
   m_Father: {fileID: 467315662}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!164 &195105208
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195105205}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: -1000
+  m_RoomHF: -1200
+  m_DecayTime: 1.49
+  m_DecayHFRatio: 0.54
+  m_ReflectionsLevel: -370
+  m_ReverbLevel: 1030
+  m_ReverbDelay: 0.011
+  m_Diffusion: 100
+  m_Density: 60
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 4
+--- !u!170 &195105209
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195105205}
+  m_Enabled: 1
+  m_DistortionLevel: 0.5
 --- !u!1 &195226727
 GameObject:
   m_ObjectHideFlags: 0
@@ -7613,7 +7647,7 @@ MonoBehaviour:
   startRoom: 10
   currentRoom: 0
   timer: 0
-  timerReset: 3.5
+  timerReset: 5
   randNumber: 0
   canMove: 0
   doorTimerReset: 0
@@ -7747,7 +7781,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 94
+  Priority: 74
   DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
@@ -10276,7 +10310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stage: 0
   timer: 0
-  timerReset: 3.5
+  timerReset: 5
   difficultyChoice: 0
   ventObject: {fileID: 0}
 --- !u!4 &1236826563
@@ -11728,7 +11762,7 @@ MonoBehaviour:
   startRoom: 1
   currentRoom: 0
   timer: 0
-  timerReset: 3.5
+  timerReset: 5
   randNumber: 0
   canMove: 0
   doorTimerReset: 0
