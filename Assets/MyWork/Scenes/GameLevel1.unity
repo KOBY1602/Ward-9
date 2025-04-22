@@ -4248,8 +4248,8 @@ MonoBehaviour:
   buttonClick3: {fileID: 8300000, guid: 5d7a442c05b807441a9ba75b8428fe41, type: 3}
   Threat1: {fileID: 8300000, guid: bbae490be54828a47b8dd121888bee2b, type: 3}
   Threat2: {fileID: 8300000, guid: da0990031479e9746bef6d55dfc99577, type: 3}
-  Threat11: {fileID: 0}
-  Threat12: {fileID: 0}
+  Threat11: {fileID: 8300000, guid: 901fc99b74b23934e92bf3bc76a7d8cc, type: 3}
+  Threat12: {fileID: 8300000, guid: da7ea8c46f7c095459253b7ff0766da4, type: 3}
   Threat13: {fileID: 0}
   doorClose: {fileID: 8300000, guid: feab5742074d5904093911f947fe20c1, type: 3}
   doorOpen: {fileID: 8300000, guid: 9ed97cde12721da459d0e30a51c4503f, type: 3}

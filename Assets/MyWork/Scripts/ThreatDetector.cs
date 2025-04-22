@@ -214,6 +214,18 @@ public class ThreatDetector : MonoBehaviour
                 break;
             case 4:
                 AudioManager.instance.ThreatSound(1, false);
+                switch (Room9Bot.instance.stage)
+                {
+                    case 1:
+                        AudioManager.instance.ThreatSound(11, true);
+                        break;
+                    case 2:
+                        AudioManager.instance.ThreatSound(12, true);
+                        break;
+                    case 3:
+                        break;
+                }
+
                 gray.SetActive(true);
                 break;
 

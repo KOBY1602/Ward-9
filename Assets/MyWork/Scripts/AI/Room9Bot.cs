@@ -7,8 +7,8 @@ using static RoomMover;
 
 public class Room9Bot : MonoBehaviour
 {
-
-    [SerializeField] private int stage;
+    public static Room9Bot instance;
+    [SerializeField] public int stage;
     
    
 
@@ -22,6 +22,10 @@ public class Room9Bot : MonoBehaviour
     public Difficulty difficultyChoice;
 
     [SerializeField] private GameObject ventObject;
+    private void Awake()
+    {
+        instance = this;
+    }
     public enum Difficulty
     {
         FirstLevel,
@@ -41,21 +45,21 @@ public class Room9Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         timer += Time.deltaTime;
         if (timer >= timerReset && canMove)
         {
             timer = 0;
             if (RandomMoveNumber() < GetDifficult() )
             {
-                if (stage != 4)
+                if (stage != 5 && stage !=4)
                 {
                     ToNextStage();
                     Debug.Log("Room 9 NextStage");
                 }
                 else
                 {
-                    Stage4();
+                    Stage5();
                 }
                 
             }
@@ -73,13 +77,14 @@ public class Room9Bot : MonoBehaviour
     {
         switch (stage)
         {
-            case 1:
+            case 2:
+
                 AudioManager.instance.ThreatSound(11, true);
                 break;
-            case 2:
+            case 3:
                 AudioManager.instance.ThreatSound(12, true);
                 break;
-            case 3:
+            case 4:
 
                 break;
         }
@@ -108,7 +113,7 @@ public class Room9Bot : MonoBehaviour
         return randNumber;
     }
 
-    void Stage4()
+    void Stage5()
     {
         if (!ventObject.activeSelf)
         {
@@ -121,7 +126,7 @@ public class Room9Bot : MonoBehaviour
     }
     void Retreat()
     {
-        int randomStage = Random.Range(1, 4);
+        int randomStage = Random.Range(1, 3);
         stage = randomStage;
     }
     void IncreaseDifficulty()
