@@ -5228,7 +5228,7 @@ GameObject:
   - component: {fileID: 603664014}
   - component: {fileID: 603664013}
   - component: {fileID: 603664016}
-  - component: {fileID: 603664015}
+  - component: {fileID: 603664017}
   m_Layer: 0
   m_Name: AdManager
   m_TagString: Untagged
@@ -5249,8 +5249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initalizeAds: {fileID: 603664016}
-  bannerAds: {fileID: 0}
-  interestialAds: {fileID: 603664015}
+  bannerAds: {fileID: 603664017}
+  interestialAds: {fileID: 0}
   rewardedAds: {fileID: 0}
 --- !u!4 &603664014
 Transform:
@@ -5267,20 +5267,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &603664015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603664012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd9f11b036cd0c44589778230e7f314e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidAdUnitId: 
-  iosAdUnitId: 
 --- !u!114 &603664016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5293,9 +5279,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c02fec619093954d8cc1e6e09387ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  androidGameId: 
-  iosGameId: 
+  androidGameId: 5844347
+  iosGameId: 5844347
   isTesting: 0
+--- !u!114 &603664017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603664012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357bb4980cbafb841ac1efc7e10bd50c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidAdUnitId: Banner_Android
+  iosAdUnitId: Banner_IOS
 --- !u!1 &617470951
 GameObject:
   m_ObjectHideFlags: 0
